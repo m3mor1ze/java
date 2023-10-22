@@ -19,8 +19,8 @@ public class Dessert extends Food {
     }
 
     @Override
-    public void info() {
-        System.out.println("Dessert (" + component1 + " + " + component2 + ")");
+    public String toString(){
+        return "Dessert (" + component1 + " + " + component2 + ")";
     }
 
     @Override

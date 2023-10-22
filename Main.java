@@ -36,9 +36,12 @@ public class Main {
                 breakfast[itemsSoFar] = food;
                 if (ifcalories)
                     calories += food.calculateCalories();
-            } else {
+            } else if (parts[0].equals("-calories"))
+                System.out.println("Program will calculate calories");
+              else if (parts[0].equals("-sort"))
+                System.out.println("Breakfast will be sorted");
+                else
                 System.out.println("Class not found");
-            }
             itemsSoFar++;
         }
 
@@ -83,10 +86,11 @@ public class Main {
 
             for (Food item : breakfast) {
                 if (item != null) {
-                    item.info();
+                    System.out.println(item.toString());
                 }
             }
         }
+
         System.out.println("Всего хорошего!");
     }
 }

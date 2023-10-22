@@ -18,8 +18,8 @@ public class Cocktail extends Food {
     }
 
     @Override
-    public void info() {
-        System.out.println("Cocktail (" + drink + " + " + fruit + ")");
+    public String toString(){
+        return "Cocktail (" + drink + " + " + fruit + ")";
     }
 
     @Override

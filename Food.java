@@ -1,4 +1,4 @@
-public abstract class Food implements Consumable, Nutritious, PrintInfo {
+public abstract class Food implements Consumable, Nutritious{
     String name = null;
 
     public Food(String name) {

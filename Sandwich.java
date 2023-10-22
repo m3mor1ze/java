@@ -18,8 +18,8 @@ public class Sandwich extends Food {
     }
 
     @Override
-    public void info() {
-        System.out.println("Sandwich (" + filling1 + " + " + filling2 + ")");
+    public String toString(){
+        return "Sandwich (" + filling1 + " + " + filling2 + ")";
     }
 
     @Override
