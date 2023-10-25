@@ -19,7 +19,7 @@ public class Dessert extends Food {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Dessert (" + component1 + " + " + component2 + ")";
     }
 

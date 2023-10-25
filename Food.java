@@ -1,4 +1,4 @@
-public abstract class Food implements Consumable, Nutritious{
+public class Food implements Consumable, Nutritious {
     String name = null;
 
     public Food(String name) {
@@ -21,5 +21,15 @@ public abstract class Food implements Consumable, Nutritious{
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void consume() {
+
+    }
+
+    @Override
+    public Integer calculateCalories() {
+        return null;
     }
 }

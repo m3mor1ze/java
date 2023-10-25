@@ -1,6 +1,5 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     @SuppressWarnings("unchecked")
@@ -31,16 +30,34 @@ public class Main {
             if (parts[0].equals("Sandwich") || parts[0].equals("Dessert") || parts[0].equals("Cocktail")) {
                 Class<?> foodClass = Class.forName(parts[0]);
 
-                Food food = (Food) foodClass.getDeclaredConstructor(String.class, String.class).newInstance(parts[1], parts[0]);
+                String[] p = parts[1].split(",");
+                ;
 
+                Food food = (Food) foodClass.getDeclaredConstructor(String.class, String.class).newInstance(p[0], p[1]);
+                breakfast[itemsSoFar] = food;
+                if (ifcalories)
+                    calories += food.calculateCalories();
+            }
+            if (parts[0].equals("Cheese")) {
+                Class<?> foodClass = Class.forName(parts[0]);
+
+                Food food = (Food) foodClass.getDeclaredConstructor().newInstance();
+
+                breakfast[itemsSoFar] = food;
+                if (ifcalories)
+                    calories += food.calculateCalories();
+            }
+            if (parts[0].equals("Apple")) {
+                Class<?> foodClass = Class.forName("Apple");
+                Food food = (Food) foodClass.getDeclaredConstructor(String.class).newInstance(parts[1]);
                 breakfast[itemsSoFar] = food;
                 if (ifcalories)
                     calories += food.calculateCalories();
             } else if (parts[0].equals("-calories"))
                 System.out.println("Program will calculate calories");
-              else if (parts[0].equals("-sort"))
+            else if (parts[0].equals("-sort"))
                 System.out.println("Breakfast will be sorted");
-                else
+            else
                 System.out.println("Class not found");
             itemsSoFar++;
         }
@@ -74,22 +91,35 @@ public class Main {
                     if (first.equals(second)) {
                         return 0;
                     }
-
-                    int caloriesCompare = first.calculateCalories() - second.calculateCalories();
-                    if (caloriesCompare != 0) {
-                        return caloriesCompare;
-                    }
-
-                    return first.getName().compareTo(second.getName());
+                    return first.calculateCalories() - second.calculateCalories();
                 }
             }));
 
             for (Food item : breakfast) {
                 if (item != null) {
-                    System.out.println(item.toString());
+                    System.out.println(item.toString() + "  " + item.calculateCalories());
                 }
             }
         }
+
+        System.out.println("Итого:");
+
+        int i = 0;
+        String[] str_breakfast = new String[20];
+        for (Food item : breakfast) {
+            if (item != null) {
+                i++;
+                str_breakfast[i] = item.toString();
+            }
+        }
+
+        List<String> list = Arrays.asList(str_breakfast);
+        Map<String, Integer> frequency = list.stream()
+                .collect(Collectors.toMap(
+                        e -> e,
+                        e -> 1,
+                        Integer::sum));
+        frequency.forEach((k, v) -> System.out.println(k + ": " + v));
 
         System.out.println("Всего хорошего!");
     }

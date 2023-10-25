@@ -18,7 +18,7 @@ public class Sandwich extends Food {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Sandwich (" + filling1 + " + " + filling2 + ")";
     }
 
